@@ -1,0 +1,5 @@
+# Local tooling / preview helpers (not site content)
+.claude/
+
+# macOS
+.DS_Store
