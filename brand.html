@@ -488,6 +488,7 @@
         <a href="#components">V. Components</a>
         <a href="#voice">VI. Voice</a>
         <a href="#usage">VII. Usage</a>
+        <a href="#ios">VIII. iOS</a>
       </nav>
 
       <div class="guide-body">
@@ -1095,6 +1096,285 @@
                   <span class="spec-val">Rounded cards, colored background panels, drop shadows, sans-serif headings, bright accent colors, gradient fills, hero imagery with text overlays, ALL-CAPS in display headings.</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== VIII. iOS ===== -->
+        <section class="section" id="ios">
+          <div class="section-grid">
+            <div class="section-label">VIII<span class="sub">iOS</span></div>
+            <div class="section-body">
+              <h2>iOS Design Principles</h2>
+              <p>The Founding Charter aesthetic translates to native iOS. The goal is an app that feels like a considered institutional tool — not a tech product — while respecting platform conventions so users are never confused by the interface itself.</p>
+              <p>Follow Apple's Human Interface Guidelines for interaction patterns, but override their visual defaults with SDIT's palette, typography, and spacing wherever the platform allows.</p>
+
+              <!-- Color -->
+              <div style="margin-top: 2.5rem;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid var(--hairline); padding-bottom: 0.6rem;">Color &amp; Dark Mode</p>
+
+                <div class="spec-row">
+                  <span class="spec-key">Light mode bg</span>
+                  <span class="spec-val"><code>#FCFBF8</code> — use as <code>UIColor(red:0.988 green:0.984 blue:0.973 alpha:1)</code> or <code>Color(hex: "FCFBF8")</code>. Never pure white.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Dark mode bg</span>
+                  <span class="spec-val"><code>#101C2C</code> (ink) — the navy becomes the canvas. Secondary surfaces: <code>#16243A</code>. Grouped table bg: <code>#0D1825</code>.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Primary text</span>
+                  <span class="spec-val">Light: <code>#101C2C</code>. Dark: <code>rgba(252,251,248,0.92)</code> — warm white, not pure white. Never <code>.label</code> default.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Secondary text</span>
+                  <span class="spec-val">Light: <code>#5A6472</code> (muted). Dark: <code>rgba(246,245,240,0.62)</code>.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Accent / tint</span>
+                  <span class="spec-val"><code>#234E70</code> (marine) — use as the app's global <code>accentColor</code> / <code>tintColor</code>. Controls links, toggles, checkboxes, selected tabs.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Gold</span>
+                  <span class="spec-val"><code>#A8842C</code> — labels, eyebrows, section headers, active indicators. Not the tint color (too low contrast on white).</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Separator / divider</span>
+                  <span class="spec-val">Light: <code>#D9D4C8</code>. Dark: <code>rgba(252,251,248,0.12)</code>. Replace all system separator colors.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Dynamic Color</span>
+                  <span class="spec-val">Define each token as a <code>UIColor</code> with light/dark variants. In SwiftUI use a custom <code>Color</code> extension. Never hardcode — always use the semantic token so dark mode is automatic.</span>
+                </div>
+              </div>
+
+              <!-- SwiftUI color extension -->
+              <div style="margin-top: 1.75rem; border: 1px solid var(--hairline); background: #0D1118; padding: 1.5rem; overflow-x: auto;">
+                <p style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(252,251,248,0.35); margin-bottom: 1rem;">SwiftUI — Color tokens</p>
+                <pre style="font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; color: rgba(252,251,248,0.85); margin: 0; white-space: pre;">extension Color {
+    static let sditPaper   = Color(light: Color(hex:"FCFBF8"), dark: Color(hex:"101C2C"))
+    static let sditInk     = Color(light: Color(hex:"101C2C"), dark: Color(hex:"F0EFE8").opacity(0.92))
+    static let sditMuted   = Color(light: Color(hex:"5A6472"), dark: Color(hex:"F0EFE8").opacity(0.50))
+    static let sditMarine  = Color(light: Color(hex:"234E70"), dark: Color(hex:"4A8AB5"))
+    static let sditGold    = Color(light: Color(hex:"A8842C"), dark: Color(hex:"C4A24E"))
+    static let sditHairline = Color(light: Color(hex:"D9D4C8"), dark: Color(hex:"FCFBF8").opacity(0.12))
+}</pre>
+              </div>
+
+              <!-- Typography -->
+              <div style="margin-top: 2.5rem;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid var(--hairline); padding-bottom: 0.6rem;">Typography</p>
+
+                <div class="spec-row">
+                  <span class="spec-key">Display / headings</span>
+                  <span class="spec-val">EB Garamond — embed as custom font (<code>.ttf</code> via <code>UIFontDescriptor</code> or SwiftUI <code>.custom("EBGaramond-Regular", size:)</code>). Required for large titles and section headers.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Body</span>
+                  <span class="spec-val">IBM Plex Sans — embed or fall back to <code>.systemFont(ofSize:weight:)</code>. Use for all prose, list items, and form labels.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Metadata / labels</span>
+                  <span class="spec-val">IBM Plex Mono — embed or fall back to <code>.monospacedSystemFont(ofSize:weight:)</code>. Use for dates, coordinates, ALL-CAPS eyebrows, and status labels.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Dynamic Type</span>
+                  <span class="spec-val">Support Dynamic Type. Map custom fonts to system text styles using <code>UIFontMetrics</code>. Scale body and UI text; display/hero text may be fixed if layout requires it.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Italic emphasis</span>
+                  <span class="spec-val">EB Garamond Italic in <code>.sditMarine</code> for key phrases — same as web. In SwiftUI: <code>.italic()</code> + <code>.foregroundColor(.sditMarine)</code>.</span>
+                </div>
+              </div>
+
+              <!-- SwiftUI font extension -->
+              <div style="margin-top: 1.75rem; border: 1px solid var(--hairline); background: #0D1118; padding: 1.5rem; overflow-x: auto;">
+                <p style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(252,251,248,0.35); margin-bottom: 1rem;">SwiftUI — Font tokens</p>
+                <pre style="font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; color: rgba(252,251,248,0.85); margin: 0; white-space: pre;">extension Font {
+    static func sditDisplay(_ size: CGFloat, italic: Bool = false) -> Font {
+        .custom(italic ? "EBGaramond-Italic" : "EBGaramond-Medium", size: size)
+    }
+    static func sditBody(_ size: CGFloat = 16) -> Font {
+        .custom("IBMPlexSans-Regular", size: size)
+    }
+    static func sditMono(_ size: CGFloat = 12) -> Font {
+        .custom("IBMPlexMono-Regular", size: size)
+    }
+}
+
+// Usage
+Text("An institution for the")
+    .font(.sditDisplay(28))
+Text("Post-Industrial Renaissance")
+    .font(.sditDisplay(28, italic: true))
+    .foregroundColor(.sditMarine)</pre>
+              </div>
+
+              <!-- Navigation & Structure -->
+              <div style="margin-top: 2.5rem;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid var(--hairline); padding-bottom: 0.6rem;">Navigation &amp; Structure</p>
+
+                <div class="spec-row">
+                  <span class="spec-key">Navigation bar</span>
+                  <span class="spec-val">Large title: EB Garamond, <code>.sditInk</code>. Bar background: <code>.sditPaper</code>. Bottom border: <code>.sditHairline</code> 1px. No blur/translucency — use opaque bars. Back button tint: <code>.sditMarine</code>.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Tab bar</span>
+                  <span class="spec-val">Background: <code>.sditPaper</code>. Selected tint: <code>.sditMarine</code>. Unselected: <code>.sditMuted</code>. Tab labels: IBM Plex Mono uppercase. Top border: <code>.sditHairline</code>. No system blur.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Section headers</span>
+                  <span class="spec-val">IBM Plex Mono, 11pt, <code>#A8842C</code> gold, ALL CAPS, tracking 0.12em — mirrors the web <code>.article-label</code>. Never use default grouped gray headers.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">List / table rows</span>
+                  <span class="spec-val">No separator insets. Hairline separators. No system accessory chevrons unless navigating — use a custom mono arrow <code>→</code> in <code>.sditMuted</code>. Row background: <code>.sditPaper</code>.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Modals / sheets</span>
+                  <span class="spec-val">Detent: <code>.large</code> preferred. Sheet background: <code>.sditPaper</code>. Drag indicator: <code>.sditHairline</code>. Header in sheet: EB Garamond medium, not navigation bar style.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Search</span>
+                  <span class="spec-val">Search bar background: <code>.sditPaper</code>. Placeholder text in <code>.sditMuted</code>. Avoid the default gray pill shape — use an underline-only search field if custom.</span>
+                </div>
+              </div>
+
+              <!-- Components -->
+              <div style="margin-top: 2.5rem;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid var(--hairline); padding-bottom: 0.6rem;">Components &amp; Controls</p>
+
+                <div class="spec-row">
+                  <span class="spec-key">Buttons — primary</span>
+                  <span class="spec-val">EB Garamond italic, <code>.sditInk</code>, underline border — mirrors the web CTA. No filled pill buttons for primary actions. In SwiftUI: <code>ButtonStyle</code> with bottom border only.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Buttons — secondary</span>
+                  <span class="spec-val">IBM Plex Mono, ALL CAPS, <code>.sditMuted</code> with <code>.sditHairline</code> full border (no radius). For destructive: border in <code>#B45309</code>.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Cards / panels</span>
+                  <span class="spec-val">No rounded rectangle cards. Use flat panels with <code>.sditHairline</code> border and zero corner radius. Shadows: none. Background: <code>.sditPaper</code> (light) or <code>#16243A</code> (dark).</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Status / callout</span>
+                  <span class="spec-val">Left border accent (2pt, <code>.sditGold</code>), no background fill. Label in IBM Plex Mono gold uppercase. Content in IBM Plex Sans — mirrors web <code>.status</code> component.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Toggle / switch</span>
+                  <span class="spec-val">System <code>Toggle</code> with <code>.tint(.sditMarine)</code>. Label: IBM Plex Sans, <code>.sditInk</code>. Sublabel: IBM Plex Mono, <code>.sditMuted</code>, small.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Text fields</span>
+                  <span class="spec-val">Underline style only — no rounded rect border. <code>.sditHairline</code> 1px bottom border, thickens to <code>.sditMarine</code> 2px on focus. Label above field in IBM Plex Mono gold.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">SF Symbols</span>
+                  <span class="spec-val">Use <code>.monochrome</code> rendering. Tint with <code>.sditMarine</code> for interactive, <code>.sditMuted</code> for decorative. Avoid filled variants — outline/thin weight preferred to match the engraved aesthetic.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Empty states</span>
+                  <span class="spec-val">Crest mark (<code>sdit-shield-navy</code>) at ~80pt, <code>.sditMuted</code> opacity 0.3. EB Garamond italic headline. IBM Plex Mono mono metadata line below. No illustrations.</span>
+                </div>
+              </div>
+
+              <!-- Motion -->
+              <div style="margin-top: 2.5rem;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid var(--hairline); padding-bottom: 0.6rem;">Motion &amp; Haptics</p>
+
+                <div class="spec-row">
+                  <span class="spec-key">Transitions</span>
+                  <span class="spec-val">Prefer push/fade over custom transitions. Duration: 280–320ms with <code>easeInOut</code>. No spring bounces, no scale-in pop animations — they undercut the institutional tone.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Page reveals</span>
+                  <span class="spec-val">On view appear: <code>opacity 0→1</code> + <code>translateY(8pt)→0</code> over 400ms with <code>.easeOut</code>. Stagger content blocks by 80ms — matches the web <code>.rise</code> animation.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Haptics</span>
+                  <span class="spec-val">Use sparingly. <code>.light</code> impact for selections, <code>.medium</code> for confirmations (submit, donate). No haptics on navigation or scrolling. Never <code>.heavy</code>.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Reduced motion</span>
+                  <span class="spec-val">Check <code>UIAccessibility.isReduceMotionEnabled</code> / SwiftUI <code>@Environment(\.accessibilityReduceMotion)</code>. Disable all translateY animations; keep opacity-only fades.</span>
+                </div>
+              </div>
+
+              <!-- App icon -->
+              <div style="margin-top: 2.5rem;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid var(--hairline); padding-bottom: 0.6rem;">App Icon &amp; Launch Screen</p>
+
+                <div style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                  <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 18px; overflow: hidden; border: 1px solid var(--hairline); margin: 0 auto 0.6rem;">
+                      <img src="/assets/icon-512.png" alt="App icon" style="width: 100%; height: 100%; object-fit: cover;" />
+                    </div>
+                    <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">App icon</p>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 18px; overflow: hidden; border: 1px solid var(--hairline); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; background: var(--paper);">
+                      <img src="/assets/sdit-shield-ink.png" alt="Shield" style="height: 48px; width: auto;" />
+                    </div>
+                    <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">Alt — light</p>
+                  </div>
+                </div>
+
+                <div class="spec-row">
+                  <span class="spec-key">Primary icon</span>
+                  <span class="spec-val">Navy shield on paper tile (<code>icon-512.png</code>). Provide all required sizes via Xcode asset catalog. Corner radius is applied by iOS — do not pre-round.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Alternate icons</span>
+                  <span class="spec-val">Offer a dark alternate: navy shield on ink (<code>#101C2C</code>) tile. Accessible via Settings or in-app via <code>UIApplication.setAlternateIconName</code>.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Launch screen</span>
+                  <span class="spec-val">Paper background (<code>#FCFBF8</code>). Navy crest centered, ~140pt wide. No text. Matches first screen so the transition is seamless.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Spotlight / share</span>
+                  <span class="spec-val">Use the same icon. For share sheet thumbnails, use the full crest on paper at 512×512.</span>
+                </div>
+              </div>
+
+              <!-- What to avoid -->
+              <div class="dos-grid" style="margin-top: 2.5rem;">
+                <div class="do-card">
+                  <h4>Do on iOS</h4>
+                  <p>Opaque nav bars in paper or navy.</p>
+                  <p style="margin-top:0.6rem">Zero corner-radius cards and panels.</p>
+                  <p style="margin-top:0.6rem">EB Garamond for large titles and prominent headings.</p>
+                  <p style="margin-top:0.6rem">IBM Plex Mono in gold ALL CAPS for section labels.</p>
+                  <p style="margin-top:0.6rem">Hairline separators everywhere — replace all system gray rules.</p>
+                  <p style="margin-top:0.6rem">Outline SF Symbols tinted marine or muted.</p>
+                </div>
+                <div class="dont-card">
+                  <h4>Don't on iOS</h4>
+                  <p>Translucent / blur nav bars — they break the paper tone.</p>
+                  <p style="margin-top:0.6rem">System rounded rect cards (<code>RoundedRectangle(cornerRadius:16)</code>).</p>
+                  <p style="margin-top:0.6rem">SF Pro Display or system serif for headings.</p>
+                  <p style="margin-top:0.6rem">Default blue system tint — always override with marine.</p>
+                  <p style="margin-top:0.6rem">Gradient backgrounds or colored section bands.</p>
+                  <p style="margin-top:0.6rem">Spring/bounce animations or scale-in pop effects.</p>
+                </div>
+              </div>
+
+              <!-- Checklist -->
+              <div class="callout" style="margin-top: 2rem;">
+                <span class="s-label" style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.75rem;">New screen checklist</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 2rem;">
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Background is <code>#FCFBF8</code> / <code>#101C2C</code></p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Nav bar opaque, paper or navy</p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Heading uses EB Garamond</p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Section labels in Mono gold ALL CAPS</p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ No rounded cards (radius = 0)</p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Tint color overridden to marine</p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Separators use hairline color</p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Dark mode tested</p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Dynamic Type tested at largest size</p>
+                  <p style="font-size: 0.88rem; margin: 0;">☐ Reduce Motion respected</p>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
