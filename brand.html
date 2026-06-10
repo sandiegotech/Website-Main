@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDIT Brand Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <style>
+    /* ---- Reset ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+    /* ---- Tokens ---- */
+    :root {
+      --paper:    #FCFBF8;
+      --ink:      #101C2C;
+      --marine:   #234E70;
+      --gold:     #A8842C;
+      --hairline: #D9D4C8;
+      --muted:    #5A6472;
+      --font-display: 'EB Garamond', Georgia, serif;
+      --font-body:    'IBM Plex Sans', system-ui, sans-serif;
+      --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    /* ---- Layout ---- */
+    .frame { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ---- Masthead ---- */
+    .masthead {
+      border-bottom: 1px solid var(--hairline);
+      position: sticky;
+      top: 0;
+      background: var(--paper);
+      z-index: 10;
+    }
+    .masthead-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.1rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .masthead-inner .wordmark {
+      color: var(--ink);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+    }
+    .masthead-inner img { height: 1.55rem; width: auto; }
+    .masthead nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      transition: color 0.2s;
+    }
+    .masthead nav a:hover { color: var(--gold); }
+
+    /* ---- Page Hero ---- */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.12;
+      color: var(--ink);
+      max-width: 22ch;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      max-width: 36rem;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    /* ---- Section ---- */
+    .section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .section-grid {
+      display: grid;
+      grid-template-columns: 14rem 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 720px) {
+      .section-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .section-label .sub { display: block; color: var(--muted); margin-top: 0.35rem; }
+    .section-body { max-width: 48rem; }
+    .section-body h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 1.75rem;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+    }
+    .section-body p { color: var(--ink); margin-bottom: 1rem; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* ---- Spec rows ---- */
+    .spec-row {
+      display: grid;
+      grid-template-columns: 12rem 1fr;
+      gap: 1rem 2rem;
+      align-items: baseline;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--hairline);
+      font-size: 0.9rem;
+    }
+    .spec-row:first-child { border-top: 1px solid var(--hairline); }
+    .spec-key {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .spec-val { font-family: var(--font-body); color: var(--ink); }
+    .spec-val code {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--marine);
+      background: rgba(35, 78, 112, 0.06);
+      padding: 0.15em 0.4em;
+    }
+    @media (max-width: 540px) {
+      .spec-row { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Color swatches ---- */
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .swatch {
+      border: 1px solid var(--hairline);
+    }
+    .swatch-block {
+      height: 80px;
+    }
+    .swatch-info {
+      padding: 0.75rem 0.9rem;
+      border-top: 1px solid var(--hairline);
+    }
+    .swatch-name {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--ink);
+      margin-top: 0.2rem;
+    }
+    .swatch-role {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ---- Typography specimens ---- */
+    .type-specimen {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .type-specimen:first-child { border-top: 1px solid var(--hairline); }
+    .type-meta {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ---- Component demos ---- */
+    .demo-block {
+      padding: 2rem;
+      border: 1px solid var(--hairline);
+      margin-top: 1.5rem;
+    }
+    .demo-block + .demo-block { margin-top: 1rem; }
+    .demo-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ---- CTA ---- */
+    .cta {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 2px;
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .cta:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ---- Status ---- */
+    .status {
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(168, 132, 44, 0.06);
+      font-size: 0.95rem;
+    }
+    .s-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ---- Triad ---- */
+    .triad { border-top: 1px solid var(--hairline); }
+    .triad-row {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      gap: 1.5rem;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .t-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--marine);
+    }
+    .triad-row p { font-size: 0.95rem; }
+
+    /* ---- Ledger ---- */
+    .ledger { border-top: 1px solid var(--hairline); }
+    .ledger a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem 1.5rem;
+      align-items: baseline;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--hairline);
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+    .ledger a:hover { color: var(--gold); }
+    .l-name { font-family: var(--font-display); font-size: 1.15rem; font-style: italic; }
+    .l-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .ledger a:hover .l-meta { color: var(--gold); }
+
+    /* ---- Callout ---- */
+    .callout {
+      border-left: 2px solid var(--gold);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .callout p { margin: 0; color: var(--ink); }
+    .callout--marine { border-left-color: var(--marine); }
+
+    /* ---- Give card ---- */
+    .give-card {
+      border: 1px solid var(--hairline);
+      padding: 2rem 2rem 1.5rem;
+    }
+    .give-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .give-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--hairline);
+      margin-top: 1rem;
+    }
+    .give-note a { color: var(--marine); }
+    .give-note a:hover { color: var(--gold); }
+
+    /* ---- Colophon ---- */
+    .colophon {
+      border-top: 1px solid var(--hairline);
+      padding: 1.5rem 0;
+    }
+    .colophon-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .colophon-inner a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .colophon-inner a:hover { color: var(--gold); }
+    .policies { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+
+    /* ---- Dark panel (for on-dark demos) ---- */
+    .dark-panel {
+      background: var(--ink);
+      padding: 2rem;
+    }
+    .dark-panel .cta {
+      color: rgba(252,251,248,0.92);
+      border-color: rgba(252,251,248,0.5);
+    }
+    .dark-panel .cta:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ---- Usage "do / don't" ---- */
+    .dos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 640px) { .dos-grid { grid-template-columns: 1fr; } }
+    .do-card, .dont-card {
+      padding: 1.5rem;
+      border-top: 3px solid;
+    }
+    .do-card { border-color: var(--marine); }
+    .dont-card { border-color: #B45309; }
+    .do-card h4, .dont-card h4 {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .do-card h4 { color: var(--marine); }
+    .dont-card h4 { color: #B45309; }
+    .do-card p, .dont-card p { font-size: 0.9rem; color: var(--ink); }
+
+    /* ---- TOC on sticky left (desktop) ---- */
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 14rem 1fr;
+      gap: 0;
+      align-items: start;
+    }
+    .guide-toc {
+      position: sticky;
+      top: 52px;
+      padding: 4rem 0;
+      border-right: 1px solid var(--hairline);
+      padding-right: 2rem;
+    }
+    .guide-toc-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .guide-toc a {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.35rem 0;
+      transition: color 0.2s;
+    }
+    .guide-toc a:hover { color: var(--gold); }
+    .guide-body { padding: 0 0 0 3rem; }
+    @media (max-width: 860px) {
+      .guide-grid { grid-template-columns: 1fr; }
+      .guide-toc { display: none; }
+      .guide-body { padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="frame masthead-inner">
+      <a href="index.html" class="wordmark">
+        <img src="/assets/sdit-shield-ink.png" alt="" />
+        <span>San Diego Institute of Technology</span>
+      </a>
+      <nav>
+        <a href="#identity">Identity</a>
+        <a href="#color">Color</a>
+        <a href="#type">Type</a>
+        <a href="#components">Components</a>
+        <a href="#voice">Voice</a>
+        <a href="index.html">← Charter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="frame">
+        <span class="eyebrow">Brand Guidelines · SDIT · MMXXVI</span>
+        <h1>The SDIT Design System</h1>
+        <p>A reference for applying the Founding Charter aesthetic — palette, typography, components, and voice — consistently across print, digital, and built environments.</p>
+      </div>
+    </section>
+
+    <!-- GUIDE BODY -->
+    <div class="frame guide-grid">
+
+      <!-- Sticky TOC -->
+      <nav class="guide-toc" aria-label="Guide sections">
+        <p class="guide-toc-label">Contents</p>
+        <a href="#identity">I. Identity</a>
+        <a href="#color">II. Color</a>
+        <a href="#type">III. Typography</a>
+        <a href="#spacing">IV. Spacing</a>
+        <a href="#components">V. Components</a>
+        <a href="#voice">VI. Voice</a>
+        <a href="#usage">VII. Usage</a>
+      </nav>
+
+      <div class="guide-body">
+
+        <!-- ===== I. IDENTITY ===== -->
+        <section class="section" id="identity">
+          <div class="section-grid">
+            <div class="section-label">I<span class="sub">Identity</span></div>
+            <div class="section-body">
+              <h2>The Founding Charter Aesthetic</h2>
+              <p>SDIT's visual language is that of an institution that has existed for a long time and knows it will exist for a long time more. Every design decision should reinforce that sense: restraint over decoration, permanence over trend, character over cleverness.</p>
+              <p>The reference point is not a startup, a university marketing site, or a Silicon Valley product. It is a founding document — the kind printed on rag paper and signed with care. The look is a consequence of that intention.</p>
+
+              <div style="margin-top: 2rem;">
+                <div class="spec-row">
+                  <span class="spec-key">Full name</span>
+                  <span class="spec-val">San Diego Institute of Technology</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Short name</span>
+                  <span class="spec-val">SDIT</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Founded</span>
+                  <span class="spec-val">MMXXVI · San Diego, California</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Primary mark</span>
+                  <span class="spec-val">Coat of arms — two bears, shield (book · compass · gavel)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Mark on light bg</span>
+                  <span class="spec-val"><code>sdit-crest-ink.png</code> or <code>sdit-shield-ink.png</code> — navy</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Mark on dark bg</span>
+                  <span class="spec-val"><code>sdit-crest.png</code> or <code>sdit-shield.png</code> — antique gold</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Favicon</span>
+                  <span class="spec-val">Shield on navy tile — <code>favicon.ico</code>, <code>icon-192.png</code>, <code>icon-512.png</code></span>
+                </div>
+              </div>
+
+              <div style="margin-top: 2.5rem; display: flex; gap: 2.5rem; align-items: flex-end; flex-wrap: wrap;">
+                <div>
+                  <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;">Full crest — on paper</p>
+                  <img src="/assets/sdit-crest-ink.png" alt="SDIT coat of arms" style="width: 200px; height: auto;" />
+                </div>
+                <div>
+                  <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;">Shield mark — masthead size</p>
+                  <img src="/assets/sdit-shield-ink.png" alt="SDIT shield" style="height: 56px; width: auto;" />
+                </div>
+                <div>
+                  <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;">App icon</p>
+                  <img src="/assets/icon-192.png" alt="SDIT app icon" style="width: 64px; height: 64px;" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== II. COLOR ===== -->
+        <section class="section" id="color">
+          <div class="section-grid">
+            <div class="section-label">II<span class="sub">Color</span></div>
+            <div class="section-body">
+              <h2>Palette</h2>
+              <p>Four colors do essentially all the work. The palette reads as warm, serious, and aged — paper and ink, not screen and pixel.</p>
+
+              <div class="swatches">
+                <div class="swatch">
+                  <div class="swatch-block" style="background: #FCFBF8;"></div>
+                  <div class="swatch-info">
+                    <div class="swatch-name">Paper</div>
+                    <div class="swatch-hex">#FCFBF8</div>
+                    <div class="swatch-role">Page background · always</div>
+                  </div>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-block" style="background: #101C2C;"></div>
+                  <div class="swatch-info">
+                    <div class="swatch-name">Ink</div>
+                    <div class="swatch-hex">#101C2C</div>
+                    <div class="swatch-role">Body text · headings · dark sections</div>
+                  </div>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-block" style="background: #234E70;"></div>
+                  <div class="swatch-info">
+                    <div class="swatch-name">Marine</div>
+                    <div class="swatch-hex">#234E70</div>
+                    <div class="swatch-role">Italic emphasis · links · accents</div>
+                  </div>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-block" style="background: #A8842C;"></div>
+                  <div class="swatch-info">
+                    <div class="swatch-name">Antique Gold</div>
+                    <div class="swatch-hex">#A8842C</div>
+                    <div class="swatch-role">Labels · borders · CTA hover</div>
+                  </div>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-block" style="background: #D9D4C8;"></div>
+                  <div class="swatch-info">
+                    <div class="swatch-name">Hairline</div>
+                    <div class="swatch-hex">#D9D4C8</div>
+                    <div class="swatch-role">Rules · borders · dividers</div>
+                  </div>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-block" style="background: #5A6472;"></div>
+                  <div class="swatch-info">
+                    <div class="swatch-name">Muted</div>
+                    <div class="swatch-hex">#5A6472</div>
+                    <div class="swatch-role">Metadata · subheadings · captions</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 2.5rem;">
+                <div class="spec-row">
+                  <span class="spec-key">CSS variable</span>
+                  <span class="spec-val">Usage</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key"><code>--paper</code></span>
+                  <span class="spec-val">All page backgrounds. Never use pure white (<code>#FFF</code>) on the main canvas.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key"><code>--ink</code></span>
+                  <span class="spec-val">All body text and headings. Never pure black.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key"><code>--marine</code></span>
+                  <span class="spec-val">Italic display text, hyperlinks, left-border accents on callouts.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key"><code>--gold</code></span>
+                  <span class="spec-val">Mono labels, eyebrows, left-border accents on status boxes, hover state for CTAs and nav links.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key"><code>--hairline</code></span>
+                  <span class="spec-val">All ruled lines and borders. The only border color in the system.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key"><code>--muted</code></span>
+                  <span class="spec-val">Navigation text, captions, metadata, secondary labels.</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 2rem; padding: 1.5rem; background: var(--ink);">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(252,251,248,0.5); margin-bottom: 1rem;">Dark section — Navy background</p>
+                <p style="color: rgba(252,251,248,0.92); font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;">On dark backgrounds, use warm white at 90% opacity for primary text.</p>
+                <p style="color: rgba(246,245,240,0.62); font-size: 0.9rem;">Secondary text at 62% opacity. Metadata at 40%. Never pure white — always <code style="color: #A8842C; font-size: 0.82rem;">#FCFBF8</code> derived.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== III. TYPOGRAPHY ===== -->
+        <section class="section" id="type">
+          <div class="section-grid">
+            <div class="section-label">III<span class="sub">Typography</span></div>
+            <div class="section-body">
+              <h2>Type System</h2>
+              <p>Three typefaces, three functions. They should not be swapped or blended outside their roles.</p>
+
+              <div style="margin-top: 2rem;">
+                <div class="spec-row">
+                  <span class="spec-key">Display</span>
+                  <span class="spec-val"><code>EB Garamond</code> — headings, standfirsts, lede paragraphs, italic names in triads, CTAs</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Body</span>
+                  <span class="spec-val"><code>IBM Plex Sans</code> — all body text, UI text, running prose</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Mono</span>
+                  <span class="spec-val"><code>IBM Plex Mono</code> — ALL-CAPS labels, eyebrows, coordinates, metadata, nav links, article labels</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Google Fonts import</span>
+                  <span class="spec-val"><code>EB+Garamond:ital,wght@0,400;0,500;0,600;1,400</code> · <code>IBM+Plex+Mono:wght@400;500</code> · <code>IBM+Plex+Sans:wght@400;500</code></span>
+                </div>
+              </div>
+
+              <!-- Type specimens -->
+              <div style="margin-top: 2.5rem;">
+                <div class="type-specimen">
+                  <p class="type-meta">Display H1 — EB Garamond 500 · clamp(2.4rem, 5.5vw, 4.1rem) · line-height 1.12</p>
+                  <p style="font-family: var(--font-display); font-weight: 500; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.12; color: var(--ink);">An institution for the <em style="color: var(--marine); font-style: italic;">Post-Industrial Renaissance</em>.</p>
+                </div>
+                <div class="type-specimen">
+                  <p class="type-meta">Display H2 — EB Garamond 500 · 1.85rem · line-height 1.25</p>
+                  <p style="font-family: var(--font-display); font-weight: 500; font-size: 1.85rem; line-height: 1.25; color: var(--ink);">Industrial education trained people to work like machines.</p>
+                </div>
+                <div class="type-specimen">
+                  <p class="type-meta">Standfirst / Lede — EB Garamond 400 · 1.25–1.3rem · line-height 1.55</p>
+                  <p style="font-family: var(--font-display); font-size: 1.25rem; line-height: 1.55; color: var(--ink);">For two centuries, schooling has been organized on the factory's logic: standardization, specialization, repetition, and the credential as proof of compliance.</p>
+                </div>
+                <div class="type-specimen">
+                  <p class="type-meta">Body — IBM Plex Sans 400 · 1rem · line-height 1.65</p>
+                  <p>Artificial intelligence has made that design obsolete. The narrow, procedural, easily-examined competence industrial education optimized for is precisely the competence machines now supply in abundance.</p>
+                </div>
+                <div class="type-specimen">
+                  <p class="type-meta">Eyebrow / Label — IBM Plex Mono 400 · 0.72rem · tracking 0.18em · ALL CAPS</p>
+                  <p style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);">Founding Charter · MMXXVI · San Diego, California</p>
+                </div>
+                <div class="type-specimen">
+                  <p class="type-meta">Article label — IBM Plex Mono · 0.72rem · tracking 0.16em · gold / muted</p>
+                  <p style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);">Article I<span style="display: block; color: var(--muted); margin-top: 0.25rem;">The Premise</span></p>
+                </div>
+                <div class="type-specimen">
+                  <p class="type-meta">CTA — EB Garamond italic · 1.15rem · underlined · ink default, gold on hover</p>
+                  <a class="cta" href="#">Write to the Institute</a>
+                </div>
+                <div class="type-specimen">
+                  <p class="type-meta">Italic triad name — EB Garamond italic · 1.1rem · marine</p>
+                  <p style="font-family: var(--font-display); font-size: 1.15rem; font-style: italic; color: var(--marine);">The Laboratory</p>
+                </div>
+                <div class="type-specimen">
+                  <p class="type-meta">Metadata / coordinates — IBM Plex Mono · 0.72rem · muted</p>
+                  <p style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--muted);">32.8956° N · 117.2348° W · Torrey Pines</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== IV. SPACING ===== -->
+        <section class="section" id="spacing">
+          <div class="section-grid">
+            <div class="section-label">IV<span class="sub">Spacing &amp; Layout</span></div>
+            <div class="section-body">
+              <h2>Grid &amp; Spacing Scale</h2>
+              <p>Everything uses a fluid 4px base scale. Two layout patterns cover almost all cases.</p>
+
+              <div style="margin-top: 1.5rem;">
+                <div class="spec-row">
+                  <span class="spec-key">Max content width</span>
+                  <span class="spec-val"><code>64rem</code> — all pages use <code>.frame</code> with 1.5rem side padding</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Max site width</span>
+                  <span class="spec-val"><code>1200px</code> — marketing-style full-bleed sections only</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Article grid</span>
+                  <span class="spec-val"><code>14rem label | 3rem gap | 1fr body</code> — collapses to 1-col below 720px</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Triad row</span>
+                  <span class="spec-val"><code>9rem name | 1.5rem gap | 1fr description</code> — collapses below 540px</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Section padding</span>
+                  <span class="spec-val"><code>4.25rem 0</code> — all article sections. Hero: <code>6rem 0 5rem</code></span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Dividers</span>
+                  <span class="spec-val"><code>1px solid var(--hairline)</code> — sections always bottom-bordered. No box-shadows.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Border-radius</span>
+                  <span class="spec-val"><code>0</code> in the charter system. No rounded cards. Flat and ruled.</span>
+                </div>
+              </div>
+
+              <!-- Spacing tokens -->
+              <div style="margin-top: 2rem; display: flex; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--hairline);">
+                <style>
+                  .sp-block { display: flex; flex-direction: column; align-items: center; padding: 1rem 0.75rem; border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+                  .sp-bar { background: var(--marine); width: 4px; }
+                  .sp-tok { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); margin-top: 0.5rem; }
+                </style>
+                <div class="sp-block"><div class="sp-bar" style="height: 4px;"></div><span class="sp-tok">--s1<br>4px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 8px;"></div><span class="sp-tok">--s2<br>8px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 12px;"></div><span class="sp-tok">--s3<br>12px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 16px;"></div><span class="sp-tok">--s4<br>16px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 20px;"></div><span class="sp-tok">--s5<br>20px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 24px;"></div><span class="sp-tok">--s6<br>24px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 32px;"></div><span class="sp-tok">--s8<br>32px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 40px;"></div><span class="sp-tok">--s10<br>40px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 48px;"></div><span class="sp-tok">--s12<br>48px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 64px;"></div><span class="sp-tok">--s16<br>64px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 80px;"></div><span class="sp-tok">--s20<br>80px</span></div>
+                <div class="sp-block"><div class="sp-bar" style="height: 96px;"></div><span class="sp-tok">--s24<br>96px</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== V. COMPONENTS ===== -->
+        <section class="section" id="components">
+          <div class="section-grid">
+            <div class="section-label">V<span class="sub">Components</span></div>
+            <div class="section-body">
+              <h2>Component Library</h2>
+              <p>All UI components live in <code>styles.css</code>. Each is shown here in context.</p>
+
+              <!-- Masthead -->
+              <div style="margin-top: 2rem;">
+                <div class="demo-label">Masthead — every page top</div>
+                <div style="border: 1px solid var(--hairline);">
+                  <div style="border-bottom: 1px solid var(--hairline); padding: 0 1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; padding: 1.1rem 0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); flex-wrap: wrap; gap: 0.5rem 1rem;">
+                      <span style="color: var(--ink); font-weight: 500; display: inline-flex; align-items: center; gap: 0.55rem;">
+                        <img src="/assets/sdit-shield-ink.png" alt="" style="height: 1.55rem;" />
+                        San Diego Institute of Technology
+                      </span>
+                      <nav style="display:flex; gap: 1.5rem;">
+                        <span>Premise</span>
+                        <span>Thesis</span>
+                        <span>Model</span>
+                        <span>Founding</span>
+                        <span style="color: var(--marine);">Apply</span>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTA variants -->
+              <div class="demo-block" style="margin-top: 1.5rem;">
+                <div class="demo-label">CTA — text link with underline</div>
+                <a class="cta" href="#">Write to the Institute</a>
+                &nbsp;&nbsp;&nbsp;
+                <a class="cta" href="#">Begin the Application →</a>
+              </div>
+              <div class="demo-block dark-panel">
+                <div class="demo-label" style="color: rgba(252,251,248,0.4);">CTA — on dark (navy) background</div>
+                <a class="cta" href="#" style="color: rgba(252,251,248,0.92); border-color: rgba(252,251,248,0.4);">Make a Gift →</a>
+              </div>
+
+              <!-- Status box -->
+              <div class="demo-block">
+                <div class="demo-label">Status note — gold left border, light tint</div>
+                <div class="status">
+                  <span class="s-label">Current Status</span>
+                  Founding phase · Framework development underway · Open curriculum &amp; founding fellowships now forming
+                </div>
+              </div>
+
+              <!-- Triad -->
+              <div class="demo-block">
+                <div class="demo-label">Triad — labeled rows with hairline rules</div>
+                <div class="triad">
+                  <div class="triad-row">
+                    <span class="t-name">The Laboratory</span>
+                    <p>Fundamental inquiry and practical invention sharing a roof — Bell Labs, early MIT.</p>
+                  </div>
+                  <div class="triad-row">
+                    <span class="t-name">The Workshop</span>
+                    <p>Mastery transmitted through making — the Renaissance bottega.</p>
+                  </div>
+                  <div class="triad-row">
+                    <span class="t-name">The Academy</span>
+                    <p>Formation of the whole person — character, reason, expression.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ledger -->
+              <div class="demo-block">
+                <div class="demo-label">Ledger — linked list with italic names and mono metadata</div>
+                <nav class="ledger">
+                  <a href="#">
+                    <span class="l-name">The Open Curriculum</span>
+                    <span class="l-meta">Free · Online →</span>
+                  </a>
+                  <a href="#">
+                    <span class="l-name">Founding Fellowships</span>
+                    <span class="l-meta">Apply →</span>
+                  </a>
+                  <a href="#">
+                    <span class="l-name">Support the Founding</span>
+                    <span class="l-meta">501(c)(3) · Give →</span>
+                  </a>
+                </nav>
+              </div>
+
+              <!-- Callouts -->
+              <div class="demo-block">
+                <div class="demo-label">Callout — gold left border (informational)</div>
+                <div class="callout">
+                  <p>A Fellowship is not a degree, a bootcamp, or a credential. It is an invitation to serious work.</p>
+                </div>
+              </div>
+              <div class="demo-block">
+                <div class="demo-label">Callout — marine left border (notice)</div>
+                <div class="callout callout--marine">
+                  <p>SDIT does not discriminate on the basis of race, color, national origin, religion, age, sex, disability, or veteran status.</p>
+                </div>
+              </div>
+
+              <!-- Give card -->
+              <div class="demo-block">
+                <div class="demo-label">Bordered panel — flat hairline box (donation card / any inset content)</div>
+                <div class="give-card">
+                  <p class="give-label">Secure donation via PayPal</p>
+                  <div style="text-align:center; padding: 1.5rem 0; color: var(--muted); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;">[ Payment widget renders here ]</div>
+                  <div class="give-note">
+                    Prefer to give another way?
+                    <a href="#">Contact us →</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Colophon -->
+              <div class="demo-block" style="padding: 0;">
+                <div class="demo-label" style="padding: 1rem 2rem 0;">Colophon — page footer</div>
+                <footer class="colophon" style="padding: 1.5rem 2rem;">
+                  <div class="colophon-inner" style="max-width: none;">
+                    <span>San Diego Institute of Technology · MMXXVI</span>
+                    <span>501(c)(3) Nonprofit · EIN 39-2954006</span>
+                    <nav class="policies">
+                      <a href="#">Accreditation</a>
+                      <a href="#">Privacy</a>
+                      <a href="#">Terms</a>
+                    </nav>
+                  </div>
+                </footer>
+              </div>
+
+              <!-- Motion -->
+              <div style="margin-top: 2.5rem;">
+                <div class="spec-row" style="border-top: 1px solid var(--hairline);">
+                  <span class="spec-key">Easing</span>
+                  <span class="spec-val"><code>cubic-bezier(0.16, 1, 0.3, 1)</code> — spring-like, snappy entry</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Fast transition</span>
+                  <span class="spec-val"><code>150ms</code> — color, border-color changes</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Normal transition</span>
+                  <span class="spec-val"><code>280ms</code> — transforms, backgrounds</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Page reveal</span>
+                  <span class="spec-val"><code>.rise</code> class — <code>opacity 0→1, translateY(10px)→0</code> over 900ms. Delayed via <code>.d1/.d2/.d3</code> (0.12s / 0.24s / 0.36s).</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Reduced motion</span>
+                  <span class="spec-val">All animations disabled via <code>@media (prefers-reduced-motion: reduce)</code>. Always implement this.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== VI. VOICE ===== -->
+        <section class="section" id="voice">
+          <div class="section-grid">
+            <div class="section-label">VI<span class="sub">Voice &amp; Tone</span></div>
+            <div class="section-body">
+              <h2>How SDIT writes</h2>
+              <p>The voice is that of an institution that has thought carefully and speaks plainly. No marketing puffery. No hedging. No casual register. Every sentence earns its place.</p>
+
+              <div style="margin-top: 2rem;">
+                <div class="spec-row">
+                  <span class="spec-key">Register</span>
+                  <span class="spec-val">Formal but not stiff. The register of a well-written letter, not a legal brief and not a newsletter.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Sentences</span>
+                  <span class="spec-val">Short-to-medium. Declarative. Vary cadence: short statement, then expansion. Avoid passive voice.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">First person</span>
+                  <span class="spec-val">"We" (institutional), never "I" in copy. Use second person "you" sparingly and only in direct address (application, donation pages).</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Avoid</span>
+                  <span class="spec-val">"Innovative," "passionate," "world-class," "doing good," "change-maker," "community." These undercut seriousness.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Dates</span>
+                  <span class="spec-val">Roman numerals for years in display contexts: MMXXVI. Numeric for prose.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Em dashes</span>
+                  <span class="spec-val">Use liberally — they are the natural pause of this voice. Always surrounded by spaces.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Italics</span>
+                  <span class="spec-val">For key phrases in display text (use <code>&lt;em&gt;</code> in HTML — renders in marine blue). Avoid overuse in body copy.</span>
+                </div>
+              </div>
+
+              <div class="dos-grid">
+                <div class="do-card">
+                  <h4>Do</h4>
+                  <p>"Industrial education trained people to work like machines. Machines now do that work."</p>
+                  <p style="margin-top: 0.75rem;">"We are at the beginning, deliberately."</p>
+                  <p style="margin-top: 0.75rem;">"Every application is read personally."</p>
+                </div>
+                <div class="dont-card">
+                  <h4>Don't</h4>
+                  <p>"We're passionate about transforming education for the 21st century!"</p>
+                  <p style="margin-top: 0.75rem;">"Join our innovative community of change-makers."</p>
+                  <p style="margin-top: 0.75rem;">"Apply now and unlock your potential."</p>
+                </div>
+              </div>
+
+              <!-- The creative disciplines framing — critical -->
+              <div class="callout" style="margin-top: 2rem;">
+                <span class="s-label" style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.4rem;">Critical framing rule</span>
+                <p>Surfing, film, photography, music, skating — these are subjects of rigorous study, not lifestyle benefits. Never present them as feature cards or "study what you love" marketing. The right framing weaves them into serious prose: "A wave is a problem in fluid dynamics and a lesson in nerve." The instant they become selling points, credibility evaporates.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== VII. USAGE ===== -->
+        <section class="section" id="usage">
+          <div class="section-grid">
+            <div class="section-label">VII<span class="sub">Application</span></div>
+            <div class="section-body">
+              <h2>Applying the system</h2>
+              <p>Rules for extending the brand to new surfaces — email, print, presentations, and third-party platforms.</p>
+
+              <div style="margin-top: 1.5rem;">
+                <div class="spec-row">
+                  <span class="spec-key">Email</span>
+                  <span class="spec-val">White background is acceptable for email clients. Use paper (<code>#FCFBF8</code>) if supported. EB Garamond for subject/headline only — use system serif as fallback. IBM Plex Sans for body throughout.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Print</span>
+                  <span class="spec-val">Off-white stock preferred (100–110gsm uncoated). Navy + gold only — no screen colors. Full crest (gold version) for letterhead and cover pages. Never scale the crest below 25mm wide.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Presentations</span>
+                  <span class="spec-val">Slide background: <code>#FCFBF8</code>. Titles: EB Garamond 500. Body: IBM Plex Sans. Accent lines: gold hairlines. No gradients, no drop shadows, no custom shapes beyond rectangles and ruled lines.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Social</span>
+                  <span class="spec-val">Navy tile background, gold or white crest. Mono ALL CAPS label at top, Garamond quote below. No filters. No emojis in official content. Avoid social-native design patterns (rounded avatars, gradient overlays).</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Third-party platforms</span>
+                  <span class="spec-val">Use the navy + gold palette wherever possible. If a platform forces its own design (e.g. PayPal button), contain it in a <code>.give-card</code> panel to frame it as an inset widget rather than a visual element of the page.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Photography</span>
+                  <span class="spec-val">Desaturated or naturally warm tones. No stock photography. Preference for honest documentary imagery — real people doing real work. Never posed "inspiration" photography.</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">What breaks the system</span>
+                  <span class="spec-val">Rounded cards, colored background panels, drop shadows, sans-serif headings, bright accent colors, gradient fills, hero imagery with text overlays, ALL-CAPS in display headings.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /.guide-body -->
+    </div><!-- /.guide-grid -->
+  </main>
+
+  <!-- COLOPHON -->
+  <footer class="colophon">
+    <div class="frame colophon-inner">
+      <span>San Diego Institute of Technology · MMXXVI</span>
+      <span>Brand Guidelines — Internal Reference</span>
+      <nav class="policies">
+        <a href="index.html">Charter</a>
+        <a href="apply.html">Fellowship</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
