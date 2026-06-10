@@ -977,20 +977,19 @@ h1, h2, h3, h4 {
 
 /* Donation card */
 .give__card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: var(--s10);
+  border: 1px solid var(--hairline);
+  padding: 2rem 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: var(--s6);
 }
 
 .give__card-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gray-400);
+  color: var(--muted);
   text-align: center;
 }
 
@@ -1006,19 +1005,18 @@ h1, h2, h3, h4 {
 }
 
 .give__card-note {
-  font-size: 0.8125rem;
-  color: var(--gray-400);
+  font-size: 0.85rem;
+  color: var(--muted);
   text-align: center;
   padding-top: var(--s4);
-  border-top: 1px solid var(--gray-100);
+  border-top: 1px solid var(--hairline);
 }
 
 .give__card-note a {
-  color: var(--gold);
-  font-weight: 500;
+  color: var(--marine);
 }
 
-.give__card-note a:hover { color: var(--gold-light); }
+.give__card-note a:hover { color: var(--gold); }
 
 /* Transparency */
 .support-transparency {
@@ -1327,7 +1325,6 @@ h1, h2, h3, h4 {
 }
 
 .legal-callout {
-  background: var(--cream-mid);
   border-left: 2px solid var(--gold);
   padding: 1.25rem 1.5rem;
   margin: 1.75rem 0;
@@ -1339,8 +1336,7 @@ h1, h2, h3, h4 {
 }
 
 .legal-callout--notice {
-  border-left-color: #B45309;
-  background: rgba(180, 83, 9, 0.06);
+  border-left-color: var(--marine);
 }
 
 .legal-callout--notice p { color: var(--ink); }
