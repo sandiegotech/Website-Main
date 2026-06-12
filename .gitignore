@@ -1,5 +1,8 @@
 # Local tooling / preview helpers (not site content)
 .claude/
 
+# Internal / not linked from public nav
+brand.html
+
 # macOS
 .DS_Store
