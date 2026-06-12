@@ -2031,3 +2031,173 @@ h1, h2, h3, h4 {
   .paper-header { padding: 3.5rem 0 2.25rem; }
   .paper-body > p { font-size: 1.12rem; }
 }
+
+/* ---- Paper field-guide elements (Part eyebrows, subheads, findings, tables, takeaways) ---- */
+.paper-part {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 3.25rem 0 0.4rem;
+}
+.paper-part + h2 { margin-top: 0; }
+
+.paper-body .paper-sub {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 0;
+  color: var(--ink);
+  text-transform: none;
+  margin: 2rem 0 0.75rem;
+}
+
+.paper-body blockquote cite {
+  display: block;
+  margin-top: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.paper-finding {
+  margin: 1.75rem 0;
+  padding: 1.1rem 1.25rem;
+  background: var(--cream-mid);
+  border-left: 2px solid var(--gold);
+}
+.paper-finding__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.paper-finding p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.paper-table-wrap { overflow-x: auto; margin: 1.75rem 0; }
+.paper-table {
+  width: 100%;
+  min-width: 32rem;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+.paper-table th,
+.paper-table td {
+  text-align: left;
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.paper-table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.paper-table tbody td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.paper-takeaways {
+  list-style: none;
+  margin: 1.75rem 0;
+  padding: 0;
+}
+.paper-takeaways li {
+  position: relative;
+  padding: 1.05rem 0 1.05rem 1.5rem;
+  border-top: 1px solid var(--hairline);
+}
+.paper-takeaways li:last-child { border-bottom: 1px solid var(--hairline); }
+.paper-takeaways li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.55rem;
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+}
+.paper-takeaways strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.paper-takeaways span {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ================================================================
+   STATUS TAGS — used on the backstage plan / build log
+   ================================================================ */
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.5rem;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.tag--done { color: var(--marine); border-color: rgba(35, 78, 112, 0.35); }
+.tag--building { color: var(--gold); border-color: var(--gold-border); }
+.tag--planned { color: var(--muted); border-color: var(--hairline); }
+
+.plan-item {
+  border-top: 1px solid var(--hairline);
+  padding: 1.1rem 0;
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.4rem 1.25rem;
+  align-items: start;
+}
+.plan-item:last-child { border-bottom: 1px solid var(--hairline); }
+.plan-item__tag { padding-top: 0.15rem; }
+.plan-item__body h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin: 0 0 0.25rem;
+}
+.plan-item__body p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.plan-item__body p + p { margin-top: 0.5rem; }
+.plan-item__body a { color: var(--marine); }
+.plan-item__body a:hover { color: var(--gold); }
+@media (max-width: 600px) {
+  .plan-item { grid-template-columns: 1fr; gap: 0.5rem; }
+}
