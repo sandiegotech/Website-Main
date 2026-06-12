@@ -440,16 +440,15 @@ h1, h2, h3, h4 {
 
 .masthead-inner {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
   padding: 1.1rem 0;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
-  gap: 0.5rem 1rem;
-  flex-wrap: wrap;
 }
 
 .masthead-inner .wordmark {
@@ -458,6 +457,13 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.masthead .toc {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .masthead-crest { height: 1.55rem; width: auto; display: block; }
@@ -498,13 +504,17 @@ h1, h2, h3, h4 {
 
 @media (max-width: 680px) {
   .masthead-inner {
-    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     gap: 0;
+    align-items: center;
+  }
+  .masthead-inner .wordmark span { display: none; }
+  .masthead .toc {
+    justify-content: flex-start;
+    white-space: normal;
   }
   .hamburger { display: flex; }
   .masthead .toc {
