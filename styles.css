@@ -782,6 +782,11 @@ h1, h2, h3, h4 {
 
 .ledger a:hover .l-meta { color: var(--gold); }
 
+@media (max-width: 680px) {
+  .ledger a { grid-template-columns: 1fr; gap: 0.25rem; }
+  .ledger .l-meta { white-space: normal; }
+}
+
 /* correspondence */
 .correspond { padding: 4.5rem 0 5rem; }
 .correspond .article-body h2 { margin-bottom: 1rem; }
