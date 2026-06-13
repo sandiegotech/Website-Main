@@ -440,7 +440,7 @@ h1, h2, h3, h4 {
 
 .masthead-inner {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 2.5rem;
   padding: 1.1rem 0;

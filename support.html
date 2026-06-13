@@ -30,8 +30,190 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#101C2C">
-  <!-- PayPal Hosted Button SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=BAAB5cH7Fg_mkYSw3get9IR0effmcRk_bdaNiFvGvlz9xZkBc8Lv902SD7PckeZ5qouXDxeVj1j8ecWYb8&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+  <style>
+    .give-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 0 4rem;
+    }
+    .give-wrap h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 500;
+      line-height: 1.2;
+      margin: 0 0 0.5rem;
+    }
+    .give-wrap .give-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 2rem;
+    }
+    .give-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .give-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--ink) 6%, transparent);
+      border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+    }
+    .give-form {
+      border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .give-disclosure {
+      margin-top: 1.25rem;
+      font-size: 0.7rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .give-contact {
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .give-contact a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* More info accordion */
+    .give-more {
+      border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+      padding: 3rem 0 4rem;
+    }
+    .give-more-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .give-more h2 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.75rem;
+      font-family: var(--mono);
+    }
+    .give-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 640px) {
+      .give-grid { grid-template-columns: 1fr; }
+    }
+    .give-grid-item .g-name {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent, #A8842C);
+      margin-bottom: 0.4rem;
+    }
+    .give-grid-item p {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    details.give-faq {
+      border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+      padding: 0;
+    }
+    details.give-faq + details.give-faq {
+      border-top: none;
+    }
+    details.give-faq summary {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0.875rem 0;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+      user-select: none;
+    }
+    details.give-faq[open] summary {
+      border-bottom-color: transparent;
+    }
+    details.give-faq summary::-webkit-details-marker { display: none; }
+    details.give-faq summary::after {
+      content: '+';
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+    details.give-faq[open] summary::after { content: '−'; }
+    details.give-faq .faq-body {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--muted);
+      padding: 0.75rem 0 1rem;
+    }
+    details.give-faq .faq-body a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    details.give-faq:last-of-type {
+      border-bottom: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+    }
+
+    .give-bars { margin-bottom: 2rem; }
+    .give-bar-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+    .give-bar-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      grid-column: 1 / -1;
+      margin-bottom: 0.1rem;
+    }
+    .give-bar-track {
+      height: 4px;
+      background: color-mix(in srgb, var(--ink) 8%, transparent);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .give-bar-fill {
+      height: 100%;
+      background: color-mix(in srgb, var(--ink) 35%, transparent);
+      border-radius: 2px;
+    }
+    .give-bar-pct {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+  </style>
 </head>
 <body>
 
@@ -52,165 +234,114 @@
 
   <main id="top">
 
-    <!-- ============ HEADER ============ -->
-    <section class="charter">
+    <!-- ============ GIVE ============ -->
+    <section id="give">
       <div class="frame">
-        <p class="eyebrow rise">Support · The Founding · San Diego, California</p>
-        <h1 class="rise d1">Help build an education that belongs to <em>everyone</em>.</h1>
-        <p class="standfirst rise d2">Your gift keeps the curriculum free, the fellowships open, and the research independent. SDIT is a 501(c)(3) nonprofit; every dollar funds the work directly.</p>
-        <a class="cta rise d3" href="#give">Make a Gift →</a>
-      </div>
-    </section>
+        <div class="give-wrap">
 
-    <!-- ============ WHY IT MATTERS ============ -->
-    <section class="article" id="why">
-      <div class="frame article-grid">
-        <div class="article-label">Why It Matters<span class="num">The case</span></div>
-        <div class="article-body">
-          <h2>Wisdom has no price tag. Keeping it that way does.</h2>
-          <p class="lede">Most institutions are built for those who can already afford them. SDIT is built for everyone else — for everyone who believes that the ability to think clearly, question deeply, and act with integrity should not depend on where you were born or what you can pay.</p>
-          <p>Real education still requires real resources — people, platforms, tools, and eventually a physical home. Curriculum writers, research fellows, and the infrastructure beneath them all have costs. Every gift funds that work directly and moves the institution forward.</p>
-          <div class="triad">
-            <div class="triad-row">
-              <span class="t-name">Free</span>
-              <p>The curriculum, always — open and available to anyone, anywhere, at no cost.</p>
-            </div>
-            <div class="triad-row">
-              <span class="t-name">501(c)(3)</span>
-              <p>A tax-exempt nonprofit. Gifts are deductible to the extent provided by law.</p>
-            </div>
-            <div class="triad-row">
-              <span class="t-name">Open</span>
-              <p>Source-available and peer-reviewed — answerable to its mission, not to a shareholder.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <p class="eyebrow" style="margin-bottom: 0.75rem;">Support · San Diego Institute of Technology</p>
+          <h1>Help build an education that belongs to <em>everyone</em>.</h1>
+          <p class="give-sub">Your gift keeps the curriculum free, the fellowships open, and the research independent.</p>
 
-    <!-- ============ WHAT YOUR GIFT FUNDS ============ -->
-    <section class="article" id="funds">
-      <div class="frame article-grid">
-        <div class="article-label">What It Funds<span class="num">Three things</span></div>
-        <div class="article-body">
-          <h2>Three things your support makes possible.</h2>
-          <div class="triad">
-            <div class="triad-row">
-              <span class="t-name">The Curriculum</span>
-              <p>Keeping our courses, reading lists, and frameworks freely available — written, reviewed, and revised by people who care about getting it right.</p>
-            </div>
-            <div class="triad-row">
-              <span class="t-name">Fellowships</span>
-              <p>Funding the next cohort of Fellows — people ready to build, create, and contribute who could not participate without support.</p>
-            </div>
-            <div class="triad-row">
-              <span class="t-name">Research</span>
-              <p>Independent inquiry into how people think, learn, and flourish alongside intelligent machines — research that answers to no shareholder.</p>
-            </div>
+          <div class="give-badges">
+            <span class="give-badge">501(c)(3) Public Charity</span>
+            <span class="give-badge">EIN 39-2954006</span>
+            <span class="give-badge">Tax-deductible</span>
+            <span class="give-badge">0% platform fee</span>
+            <span class="give-badge">Receipt emailed automatically</span>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============ MAKE A GIFT ============ -->
-    <section class="article" id="give">
-      <div class="frame article-grid">
-        <div class="article-label">Make a Gift<span class="num">Give now</span></div>
-        <div class="article-body">
-          <h2>Every gift, of any size, makes a difference.</h2>
-          <p class="lede">SDIT is a 501(c)(3) nonprofit organization. Donations are tax-deductible to the extent provided by law. We accept all major cards, PayPal, and Venmo.</p>
-          <div class="status">
-            <span class="s-label">Tax Information</span>
-            San Diego Institute of Technology · 501(c)(3) Public Charity · EIN 39-2954006 · A receipt will be emailed to you for your records.
+          <div class="give-form">
+            <div data-zeffy-embed data-form-url="/embed/donation-form/build-the-university"></div>
+            <div data-zeffy-embed-fallback style="display:none;">
+              <div style="position:relative;overflow:hidden;height:480px;width:100%;"><iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' data-zeffy-embed-src='https://www.zeffy.com/embed/donation-form/build-the-university' allowpaymentrequest allowTransparency="true"></iframe></div>
+            </div>
+            <script
+              src="https://www.zeffy.com/embed/v2/zeffy-embed.js"
+              onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});">
+            </script>
           </div>
-          <p style="margin-top: 1rem; font-size: 0.72rem; line-height: 1.55; color: var(--muted);">
-            San Diego Institute of Technology is a California nonprofit public benefit corporation and a federally recognized 501(c)(3) public charity (EIN 39-2954006). Contributions are tax-deductible to the extent permitted by law; no goods or services are provided in exchange for a gift unless otherwise noted on your receipt. Financial information about the organization is available on request at <a href="mailto:legal@sandiegotech.org" style="color: inherit;">legal@sandiegotech.org</a>. Where applicable, a copy of our charitable-registration filings may be obtained from the California Attorney General's Registry of Charitable Trusts at <a href="https://oag.ca.gov/charities" target="_blank" rel="noopener" style="color: inherit;">oag.ca.gov/charities</a>.
+
+          <p class="give-disclosure">
+            San Diego Institute of Technology is a California nonprofit public benefit corporation and a federally recognized 501(c)(3) public charity (EIN 39-2954006). Contributions are tax-deductible to the extent permitted by law; no goods or services are provided in exchange for a gift unless otherwise noted on your receipt. Financial information is available on request at <a href="mailto:legal@sandiegotech.org" style="color:inherit;">legal@sandiegotech.org</a>. Where applicable, charitable-registration filings may be obtained from the California Attorney General's Registry of Charitable Trusts at <a href="https://oag.ca.gov/charities" target="_blank" rel="noopener" style="color:inherit;">oag.ca.gov/charities</a>.
           </p>
-          <div class="give__card" style="margin-top: 1.75rem;">
-            <p class="give__card-label">Secure donation via PayPal</p>
-            <div class="give__paypal">
-              <div id="paypal-container-N5XLE6BMX9ZTJ"></div>
-              <script>
-                paypal.HostedButtons({
-                  hostedButtonId: "N5XLE6BMX9ZTJ",
-                }).render("#paypal-container-N5XLE6BMX9ZTJ")
-              </script>
-            </div>
-            <p class="give__card-note">
-              Prefer to give another way?
-              <a href="mailto:brandon@sandiegotech.org">Contact us →</a>
-            </p>
-          </div>
+
+          <p class="give-contact">Prefer to give another way — stock, wire, or employer match? <a href="mailto:brandon@sandiegotech.org">Write to us →</a></p>
+
         </div>
       </div>
     </section>
 
-    <!-- ============ WHERE SUPPORT GOES ============ -->
-    <section class="article" id="transparency">
-      <div class="frame article-grid">
-        <div class="article-label">Where We Are<span class="num">Transparency</span></div>
-        <div class="article-body">
-          <h2>Humble beginnings. Serious intentions.</h2>
-          <p class="lede">SDIT is in its earliest days. We work from shared spaces, borrowed rooms, and wherever a committed group of people can gather and build. We are not pretending otherwise — this is what starting something real looks like.</p>
-          <p>The goal is a permanent, dedicated campus — a physical home for the kind of education we are building. Getting there requires sustaining the work that comes first: the curriculum, the fellows, the research, the infrastructure. Your support funds each step of that journey.</p>
-          <p class="support-breakdown__title" style="margin-top: 2rem;">Where support goes</p>
-          <div class="support-breakdown__item">
-            <span class="support-breakdown__label">Curriculum development</span>
-            <div class="support-breakdown__bar-row">
-              <div class="support-breakdown__bar"><div class="support-breakdown__fill" style="width: 45%"></div></div>
-              <span class="support-breakdown__pct">45%</span>
-            </div>
-          </div>
-          <div class="support-breakdown__item">
-            <span class="support-breakdown__label">Fellowships &amp; programs</span>
-            <div class="support-breakdown__bar-row">
-              <div class="support-breakdown__bar"><div class="support-breakdown__fill" style="width: 30%"></div></div>
-              <span class="support-breakdown__pct">30%</span>
-            </div>
-          </div>
-          <div class="support-breakdown__item">
-            <span class="support-breakdown__label">Operations &amp; infrastructure</span>
-            <div class="support-breakdown__bar-row">
-              <div class="support-breakdown__bar"><div class="support-breakdown__fill" style="width: 15%"></div></div>
-              <span class="support-breakdown__pct">15%</span>
-            </div>
-          </div>
-          <div class="support-breakdown__item">
-            <span class="support-breakdown__label">Campus &amp; facilities (building toward)</span>
-            <div class="support-breakdown__bar-row">
-              <div class="support-breakdown__bar"><div class="support-breakdown__fill" style="width: 10%"></div></div>
-              <span class="support-breakdown__pct">10%</span>
-            </div>
-          </div>
-          <p style="margin-top: 1.5rem;"><a href="mailto:brandon@sandiegotech.org">Questions about how we use funds →</a></p>
-        </div>
-      </div>
-    </section>
+    <!-- ============ MORE INFO ============ -->
+    <section class="give-more" id="about">
+      <div class="frame">
+        <div class="give-more-wrap">
 
-    <!-- ============ BEFORE YOU GIVE ============ -->
-    <section class="article correspond" id="faq">
-      <div class="frame article-grid">
-        <div class="article-label">Before You Give<span class="num">Common questions</span></div>
-        <div class="article-body">
-          <h2>Common questions.</h2>
-          <div class="triad">
-            <div class="triad-row">
-              <span class="t-name">Deductible?</span>
-              <p>Yes. SDIT is a registered 501(c)(3) public charity (EIN 39-2954006). Donations are deductible to the extent permitted by U.S. law, and you will receive a receipt via email.</p>
+          <h2>More about this gift</h2>
+
+          <div class="give-grid">
+            <div class="give-grid-item">
+              <span class="g-name">Curriculum</span>
+              <p>Keeping courses, reading lists, and frameworks free — written and revised by people who care about getting it right.</p>
             </div>
-            <div class="triad-row">
-              <span class="t-name">Used how?</span>
-              <p>Gifts support three areas: open curriculum development, fellowships for those who need assistance, and institutional operations. We publish a breakdown in our annual disclosure.</p>
+            <div class="give-grid-item">
+              <span class="g-name">Fellowships</span>
+              <p>Funding the next cohort of Fellows who could not participate without support.</p>
             </div>
-            <div class="triad-row">
-              <span class="t-name">Recurring?</span>
-              <p>Yes — and it is the most impactful way to give. It lets us plan ahead and sustain programs long-term. You can set up a recurring gift through the PayPal button above.</p>
-            </div>
-            <div class="triad-row">
-              <span class="t-name">Other ways?</span>
-              <p>We welcome stock donations, employer matching, and other forms of support. Write to <a href="mailto:brandon@sandiegotech.org">brandon@sandiegotech.org</a> and we will work with you directly.</p>
+            <div class="give-grid-item">
+              <span class="g-name">Research</span>
+              <p>Independent inquiry into how people think, learn, and flourish alongside intelligent machines.</p>
             </div>
           </div>
+
+          <div class="give-bars">
+            <div class="give-bar-row">
+              <span class="give-bar-label">Curriculum development</span>
+              <div class="give-bar-track" style="width:100%;"><div class="give-bar-fill" style="width:45%;"></div></div>
+              <span class="give-bar-pct">45%</span>
+            </div>
+            <div class="give-bar-row">
+              <span class="give-bar-label">Fellowships &amp; programs</span>
+              <div class="give-bar-track" style="width:100%;"><div class="give-bar-fill" style="width:30%;"></div></div>
+              <span class="give-bar-pct">30%</span>
+            </div>
+            <div class="give-bar-row">
+              <span class="give-bar-label">Operations &amp; infrastructure</span>
+              <div class="give-bar-track" style="width:100%;"><div class="give-bar-fill" style="width:15%;"></div></div>
+              <span class="give-bar-pct">15%</span>
+            </div>
+            <div class="give-bar-row">
+              <span class="give-bar-label">Campus &amp; facilities (building toward)</span>
+              <div class="give-bar-track" style="width:100%;"><div class="give-bar-fill" style="width:10%;"></div></div>
+              <span class="give-bar-pct">10%</span>
+            </div>
+          </div>
+
+          <details class="give-faq">
+            <summary>Is my donation tax-deductible?</summary>
+            <div class="faq-body">Yes. SDIT is a 501(c)(3) public charity (EIN 39-2954006). Donations are deductible to the extent permitted by U.S. law. You will receive an IRS-compliant receipt via email automatically after your gift is processed.</div>
+          </details>
+
+          <details class="give-faq">
+            <summary>Can I set up a recurring gift?</summary>
+            <div class="faq-body">Yes — and it is the most impactful way to give. Recurring gifts let us plan ahead and sustain programs over time. You can set a monthly or annual amount directly in the donation form above.</div>
+          </details>
+
+          <details class="give-faq">
+            <summary>How is the money used?</summary>
+            <div class="faq-body">Gifts support open curriculum development (45%), fellowships for those who need assistance (30%), institutional operations (15%), and future campus &amp; facilities (10%). Questions? <a href="mailto:brandon@sandiegotech.org">Write to us.</a></div>
+          </details>
+
+          <details class="give-faq">
+            <summary>Other ways to give — stock, wire, employer match?</summary>
+            <div class="faq-body">We welcome stock donations, wire transfers, and employer-matched gifts. Write to <a href="mailto:brandon@sandiegotech.org">brandon@sandiegotech.org</a> and we will work with you directly.</div>
+          </details>
+
+          <details class="give-faq">
+            <summary>Where is SDIT right now?</summary>
+            <div class="faq-body">SDIT is in its founding phase — building the framework, assembling the founding circle, and beginning the first programs. We work from shared spaces and borrowed rooms. The goal is a permanent campus. Your support funds each step of that journey.</div>
+          </details>
+
         </div>
       </div>
     </section>
