@@ -1,8 +1,9 @@
 # Local tooling / preview helpers (not site content)
 .claude/
 
-# Internal / not linked from public nav
+# Internal working documents — accessible via localhost only, not published
 brand.html
+plan.html
 
 # macOS
 .DS_Store
